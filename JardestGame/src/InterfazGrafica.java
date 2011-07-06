@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class InterfazGrafica extends JPanel implements KeyListener{
+public class InterfazGrafica extends JPanel{
 	private Circulo circulo; //circulo que tiene info sobre radio
 	private boolean arribaAbajoPar; //saber si vamos de arriba hacia abajo o al contrario (pelotas pares)
 	private boolean arribaAbajoImpar; //saber si vamos de arriba hacia abajo o al contrario (pelotas impares)
@@ -36,10 +36,12 @@ public class InterfazGrafica extends JPanel implements KeyListener{
 				rects[i] = new Rectangle(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 		}
+		this.add(cuadrado);
+		cuadrado.setVisible(true);
 		
-		this.addKeyListener(this);
+		/*this.addKeyListener(this);
 		this.setFocusable(true);
-		this.requestFocusInWindow();
+		this.requestFocusInWindow();*/
 		//this.requestFocus();
 	}
 	
@@ -112,37 +114,6 @@ public class InterfazGrafica extends JPanel implements KeyListener{
 				}
 				this.repaint();
 			}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			cuadrado.desplazar(6, 0);
-			
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			cuadrado.desplazar(-6, 0);
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			cuadrado.desplazar(0, -6);
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			cuadrado.desplazar(0, 6);
-		}
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
 	}
 
 }
