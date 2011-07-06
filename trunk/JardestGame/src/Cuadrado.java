@@ -17,7 +17,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	private int mitadAltura;
 	private float x, y;
 	private float vx, vy; //para fisica()
-	private boolean presionado, arriba, abajo, derecha, izquierda, aux; //aux, para que al dejar pulsada la tecla no se inicie el hilo muchas veces
+	private boolean presionado, arriba, abajo, derecha, izquierda; //aux, para que al dejar pulsada la tecla no se inicie el hilo muchas veces
 	private Thread hiloMovimiento; //hilo solo para mover cuadrado y repintarlo
 	
 	Cuadrado(){
@@ -25,7 +25,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.mitadAltura = altura/2;
 		this.x=0;
 		this.y=200;
-		this.aux = false;
+		this.presionado = false;
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(this);
@@ -110,10 +110,9 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		this.presionado = true;
-		actualizar(e.getKeyCode());
-		if(!this.aux){ //si es la primera vez que pulso la tecla (no multiples evento de dejarla pulsada)
-			this.aux=true;
+		actualizar(e.getKeyCode(),true);
+		if(!this.presionado){ //si es la primera vez que pulso la tecla (no multiples evento de dejarla pulsada)
+			this.presionado=true;
 			Thread hilo = new Thread(hiloMovimiento); //apaño para volver a lanzar el hilo despues de hacer released
 			hilo.start();
 		}
@@ -122,10 +121,10 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		this.presionado = false;
-		actualizar(e.getKeyCode());
-		this.aux = false;
-		hiloMovimiento.interrupt();
+		actualizar(e.getKeyCode(),false);
+		this.presionado = arriba || abajo || derecha || izquierda;
+		if(!presionado)
+			hiloMovimiento.interrupt();
 	}
 
 	@Override
@@ -134,22 +133,22 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	}
 	
 	//actualizar direccion de movimiento
-	private void actualizar(int keyCode){
+	private void actualizar(int keyCode, boolean presionado){
 		 switch (keyCode) {
          case KeyEvent.VK_UP:
-             arriba = this.presionado;
+             arriba = presionado;
              break;
 
          case KeyEvent.VK_DOWN:
-             abajo = this.presionado;
+             abajo = presionado;
              break;
 
          case KeyEvent.VK_LEFT:
-             izquierda = this.presionado;
+             izquierda = presionado;
              break;
 
          case KeyEvent.VK_RIGHT:
-             derecha = this.presionado;
+             derecha = presionado;
              break;
 		 }
 	}
