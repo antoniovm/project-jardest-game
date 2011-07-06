@@ -98,7 +98,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	private void repintar() throws Exception{ //llamarlo desde el hilo
 		 SwingUtilities.invokeAndWait(new Runnable() {
              public void run() {
-                 paintImmediately(0, 0, 500, 500);
+                 repaint();
              }
          });
 	}

@@ -1,10 +1,8 @@
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import javax.swing.JComponent;
 
-public class Circulo extends JComponent{
+public class Circulo extends Rectangle{
 	int radio;
 	
 	Circulo(){
@@ -13,6 +11,10 @@ public class Circulo extends JComponent{
 	
 	Circulo(int radio){
 		this.radio = radio;
+	}
+
+	public Circulo(int i, int j, int k, int l) {
+		super(i,j,k,l);
 	}
 
 	public int getRadio() {
