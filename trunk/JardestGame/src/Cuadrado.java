@@ -18,7 +18,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	private float x, y;
 	private float vx, vy; //para fisica()
 	private boolean presionado, arriba, abajo, derecha, izquierda, aux; //aux, para que al dejar pulsada la tecla no se inicie el hilo muchas veces
-	private Thread hiloMovimiento;
+	private Thread hiloMovimiento; //hilo solo para mover cuadrado y repintarlo
 	
 	Cuadrado(){
 		this.altura = 20;
@@ -58,6 +58,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		addKeyListener(this);
 	}
 	
+	//desplazar en eje x e y de 6 en 6
 	public void desplazar(){
 		if(arriba)
 			y-=6;
@@ -69,6 +70,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 			x-=6;
 	}
 	
+	//copiado
 	 private void fisica(float dt) {
 		 vx = 0;
 	     vy = 0;
@@ -84,6 +86,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	        y = clamp(y + vy * dt, 0, 500 - altura);
 	}
 	 
+	 //copiado
 	 private float clamp(float valor, float min, float max) {
 	        if (valor > max)
 	            return max;
