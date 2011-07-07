@@ -1,13 +1,17 @@
 
 
 import java.awt.Color;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.FocusManager;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -15,7 +19,7 @@ import javax.swing.SwingUtilities;
 public class Cuadrado extends JComponent implements KeyListener{ //jcomponent para poder pedir focus
 	private int altura;
 	private int mitadAltura;
-	private float x, y;
+	private int x, y;
 	private float vx, vy; //para fisica()
 	private boolean presionado, arriba, abajo, derecha, izquierda; //aux, para que al dejar pulsada la tecla no se inicie el hilo muchas veces
 	private Thread hiloMovimiento; //hilo solo para mover cuadrado y repintarlo
@@ -58,6 +62,38 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		addKeyListener(this);
 	}
 	
+	public int getX() {
+		return Math.round(x);
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return Math.round(y);
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+	public int getMitadAltura() {
+		return mitadAltura;
+	}
+
+	public void setMitadAltura(int mitadAltura) {
+		this.mitadAltura = mitadAltura;
+	}
+
 	//desplazar en eje x e y de 6 en 6
 	public void desplazar(){
 		if(arriba)
@@ -82,8 +118,8 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	            vx = -300;
 	        if (derecha)
 	            vx = 300;
-	        x = clamp(x + vx * dt, 0, 500 - altura);
-	        y = clamp(y + vy * dt, 0, 500 - altura);
+	        //x = clamp(x + vx * dt, 0, 500 - altura);
+	        //y = clamp(y + vy * dt, 0, 500 - altura);
 	}
 	 
 	 //copiado

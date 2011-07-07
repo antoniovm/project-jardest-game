@@ -21,6 +21,7 @@ public class InterfazGrafica extends JPanel{
 	private Cuadrado cuadrado;
 	private String prueba;
 	private LinkedList<Circulo> bolas;
+	private int tiempoViejo;
 	
 	InterfazGrafica(){
 		bolas = new LinkedList<Circulo>();
@@ -33,17 +34,18 @@ public class InterfazGrafica extends JPanel{
 		for(int i=0; i<20; i++){
 			if(i%2==0){
 				//las pares empiezan arriba
-				bolas.add( new Circulo(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2));
+				bolas.add( new Circulo(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2, 0, 5));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 			else{
 				//las impares empiezan abajo (no cuadra el this.getHeight(), tengo que sumarle 460 cuando no deberia hacer falta)
-				bolas.add( new Circulo(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2));
+				bolas.add( new Circulo(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2, 0 ,-5));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 		}
 		this.add(cuadrado);
 		cuadrado.setVisible(true);
+		tiempoViejo = (int)System.nanoTime();
 		
 		/*this.addKeyListener(this);
 		this.setFocusable(true);
@@ -75,9 +77,31 @@ public class InterfazGrafica extends JPanel{
 		}
 			//g.drawString(prueba, 100, 100);
 			
-			cuadrado.paint(g);
+		cuadrado.paint(g);
+		
+		int tiempoNuevo = (int)System.nanoTime();
+		int dt = (tiempoNuevo - tiempoViejo) / 1000000000;
+		tiempoViejo = tiempoNuevo;
+
+		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
+			Circulo circ = iterator.next();
+			if (circ.y + circulo.getRadio() * 2 < this.getHeight()) // si no hemos llegado al borde inferior
+				circ.cambiarSentido();
+			else {
+				if (circ.y + circulo.getRadio() * 2 > 0) {
+					circ.cambiarSentido();
+				}
+			}
+
+			circ.mover(dt);
+
+			if (iterator.hasNext())
+				iterator.next();
+		}
+
+		this.repaint();
 			
-			try {
+			/*try {
 				Thread.sleep(20); //retrasamos desplazamiento
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -95,12 +119,6 @@ public class InterfazGrafica extends JPanel{
 					iterator.next();
 					
 				}
-				/*for(int j=0; j<20; j+=2){
-					if(rects[j].y+circulo.getRadio()*2 < this.getHeight()) //si no hemos llegado al borde inferior
-						rects[j].translate(0, 5); //posicionX+=0  posicionY+=5, se actuailza x e y de rect
-					else
-						arribaAbajoPar=false; //si llegamos abajo, cambiamos movimiento
-				}*/
 				this.repaint();
 			}
 		
@@ -108,26 +126,14 @@ public class InterfazGrafica extends JPanel{
 			for (Iterator<Circulo> iterator = bolas.iterator(); iterator
 					.hasNext();) {
 				Circulo circ = iterator.next();
-				if (circ.y + circulo.getRadio() * 2 >0) // si no
-																		// hemos
-																		// llegado
-																		// al
-																		// borde
-																		// inferior
-					circ.translate(0, -5); // posicionX+=0 posicionY+=5, se
-											// actuailza x e y de rect
+				if (circ.y + circulo.getRadio() * 2 >0) // si no hemos llegado al borde inferior																
+					circ.translate(0, -5); // posicionX+=0 posicionY+=5, se actuailza x e y de rect
 				else
-					arribaAbajoPar = true; // si llegamos abajo, cambiamos
-				if(iterator.hasNext())				// movimiento
+					arribaAbajoPar = true; // si llegamos abajo, cambiamos movimiento
+				if(iterator.hasNext())
 				iterator.next();
 
 			}
-				/*for(int j=0; j<20; j+=2){
-					if(rects[j].y+circulo.getRadio()-5 > 0) //si no hemos llegado al borde superior
-						rects[j].translate(0, -5); //posicionX+=0  posicionY-=5
-					else
-						arribaAbajoPar=true; //si llegamos arriba, cambiamos movimiento
-				}*/
 				this.repaint();
 			}
 			
@@ -138,42 +144,30 @@ public class InterfazGrafica extends JPanel{
 				.hasNext();) {
 			Circulo circ =  iterator.next();
 			if(circ.y+circulo.getRadio()*2 < this.getHeight()) //si no hemos llegado al borde inferior
-				circ.translate(0, 5); //posicionX+=0  posicionY+=5, se actuailza x e y de rect
-			else
-				arribaAbajoImpar=false; //si llegamos abajo, cambiamos movimiento
-			if(iterator.hasNext())
-			iterator.next();
-			
+					circ.translate(0, 5); // posicionX+=0 posicionY+=5, se actuailza x e y de rect
+				else
+					arribaAbajoImpar = false; // si llegamos abajo, cambiamos movimiento
+				if (iterator.hasNext())
+					iterator.next();
+
+			}
+			this.repaint();
 		}
-				/*for(int j=1; j<20; j+=2){
-					if(rects[j].y+circulo.getRadio()*2 < this.getHeight()) //si no hemos llegado al borde inferior
-						rects[j].translate(0, 5); //posicionX+=0  posicionY+=5, se actuailza x e y de rect
-					else
-						arribaAbajoImpar=false; //si llegamos abajo, cambiamos movimiento
-				}*/
-				this.repaint();
-			}
-		
-			if(!arribaAbajoImpar){ //movimiento de las impares de abajo arriba
-				Iterator<Circulo> iterator = bolas.iterator();
-				iterator.next();
-				for (; iterator
-				.hasNext();) {
-			Circulo circ =  iterator.next();
-			if(circ.y+circulo.getRadio()*2 >0) //si no hemos llegado al borde inferior
-				circ.translate(0, -5); //posicionX+=0  posicionY+=5, se actuailza x e y de rect
-			else
-				arribaAbajoImpar=true; //si llegamos abajo, cambiamos movimiento
-			if(iterator.hasNext())
+
+		if (!arribaAbajoImpar) { // movimiento de las impares de abajo arriba
+			Iterator<Circulo> iterator = bolas.iterator();
 			iterator.next();
-				/*for(int j=1; j<20; j+=2){
-					if(rects[j].y+circulo.getRadio()-5 > 0) //si no hemos llegado al borde superior
-						rects[j].translate(0, -5); //posicionX+=0  posicionY-=5
-					else
-						arribaAbajoImpar=true; //si llegamos arriba, cambiamos movimiento
-				*/}
-				this.repaint();
+			for (; iterator.hasNext();) {
+				Circulo circ = iterator.next();
+				if (circ.y + circulo.getRadio() * 2 > 0) // si no hemos llegado al borde inferior
+					circ.translate(0, -5); // posicionX+=0 posicionY+=5, se actuailza x e y de rect
+				else
+					arribaAbajoImpar = true; // si llegamos abajo, cambiamos movimiento
+				if (iterator.hasNext())
+					iterator.next();
 			}
+			this.repaint();
+		}*/
 	}
 
 }
