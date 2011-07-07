@@ -1,4 +1,7 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -35,6 +38,28 @@ public class Nivel extends JPanel{
 		this.add(cuadrado);
 		
 
+	}
+
+	public void repintar() {
+		repaint();
+		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		Iterator<Circulo> it=bolas.iterator();
+		for(int i=0; it.hasNext(); i++){
+			Circulo aux = it.next();
+			if(i%2==0)
+				g.setColor(Color.blue);
+			else
+				g.setColor(Color.red);
+			g.fillOval(aux.x, aux.y, aux.width, aux.height); //pintamos el circulo con las coordenadas y tamaño del rectangulo
+		}
+			//g.drawString(prueba, 100, 100);
+			
+		cuadrado.paint(g);
 	}
 	
 }
