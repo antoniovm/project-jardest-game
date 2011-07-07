@@ -2,20 +2,11 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FocusTraversalPolicy;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.FocusManager;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class Cuadrado extends JComponent implements KeyListener{ //jcomponent para poder pedir focus
 	private int altura;
@@ -37,13 +28,13 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		addKeyListener(this);
 	}
 	
-	Cuadrado(int altura, int i, int j){
+	Cuadrado(int altura){
 		this.altura = altura;
 		this.mitadAltura = altura/2;
 		this.x=0;
 		this.y=200;
 		this.presionado = false;
-		this.velocidad = new Velocidad(i, j);
+		this.velocidad = new Velocidad();
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(this);
