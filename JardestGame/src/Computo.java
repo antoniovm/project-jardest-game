@@ -17,7 +17,7 @@ public class Computo {
 		this.ventana=ventana;
 	}
 
-	public void siguienteEstado(int dt){
+	public void siguienteEstado(double dt){
 		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
 			iterator.next().mover(dt);
 		}

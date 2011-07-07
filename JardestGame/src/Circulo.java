@@ -31,7 +31,7 @@ public class Circulo extends Rectangle{
 		this.radio = radio;
 	}
 	
-	public void mover(int dt){
+	public void mover(double dt){
 		Dimension dim = velocidad.mover(dt);
 		this.x = dim.width;
 		this.y = dim.height;
