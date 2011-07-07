@@ -10,8 +10,8 @@ public class Computo {
 	private Cuadrado cuadrado;
 	private LinkedList<Circulo> bolas;
 
-	public Computo(Colision colision, Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {
-		this.colision=colision;
+	public Computo(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {
+		this.colision=new Colision(bolas, cuadrado);
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
 		this.ventana=ventana;

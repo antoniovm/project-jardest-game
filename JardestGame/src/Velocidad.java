@@ -14,7 +14,7 @@ public class Velocidad {
 		this.j=j;
 	}
 	
-	Dimension mover(int dt){
+	Dimension mover(double dt){
 		return new Dimension((int)(i*dt),(int)(j*dt));
 	}
 	
