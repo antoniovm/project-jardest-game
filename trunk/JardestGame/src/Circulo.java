@@ -37,8 +37,10 @@ public class Circulo extends Rectangle{
 		this.y = dim.height;
 	}
 	
-	public void cambiarSentido(){
+	public void retroceder(){
 		velocidad.cambiarSentido();
 	}
+
+	
 
 }

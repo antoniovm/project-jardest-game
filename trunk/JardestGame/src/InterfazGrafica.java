@@ -86,10 +86,10 @@ public class InterfazGrafica extends JPanel{
 		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
 			Circulo circ = iterator.next();
 			if (circ.y + circulo.getRadio() * 2 < this.getHeight()) // si no hemos llegado al borde inferior
-				circ.cambiarSentido();
+				circ.retroceder();
 			else {
 				if (circ.y + circulo.getRadio() * 2 > 0) {
-					circ.cambiarSentido();
+					circ.retroceder();
 				}
 			}
 
