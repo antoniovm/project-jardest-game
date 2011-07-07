@@ -35,6 +35,9 @@ public class Velocidad {
 		this.j = j;
 	}
 	
-	
+	public void cambiarSentido(){
+		i=-i;
+		j=-j;
+	}
 
 }
