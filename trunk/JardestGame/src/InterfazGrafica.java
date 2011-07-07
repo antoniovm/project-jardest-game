@@ -79,8 +79,8 @@ public class InterfazGrafica extends JPanel{
 			
 		cuadrado.paint(g);
 		
-		int tiempoNuevo = (int)System.nanoTime();
-		int dt = (tiempoNuevo - tiempoViejo) / 1000000000;
+		int tiempoNuevo = (int)System.currentTimeMillis();
+		int dt = (tiempoNuevo - tiempoViejo); //milisegundos 
 		tiempoViejo = tiempoNuevo;
 
 		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
