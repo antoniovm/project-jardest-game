@@ -24,6 +24,7 @@ public class GamePlay {
 			double tiempoNuevo = System.currentTimeMillis();
 			double dt = (tiempoNuevo - tiempoViejo)/1000000; //segundos 
 			tiempoViejo = tiempoNuevo;
+			computo.siguienteEstado(dt);
 		}
 
 	}
