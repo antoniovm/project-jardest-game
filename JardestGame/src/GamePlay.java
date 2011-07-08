@@ -21,14 +21,12 @@ public class GamePlay {
 	
 	public void start() {	//Bucle principal del juego
 		double tiempoViejo=System.currentTimeMillis();
-		int i=0;
 		while(true){
 			double tiempoNuevo = System.currentTimeMillis();
 			double dt = (double)1/fps;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
-			i++;
 			try {
 				Thread.sleep((int)(((double)1/fps)*1000));	
 			} catch (InterruptedException e) {
