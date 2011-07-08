@@ -21,6 +21,7 @@ public class Computo {
 		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
 			iterator.next().mover(dt);
 		}
+		cuadrado.mover(dt);
 		colision.comprobar();
 		
 		
