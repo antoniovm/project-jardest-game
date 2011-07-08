@@ -36,17 +36,21 @@ public class Colision extends Thread{
 				aux.retroceder();
 			}
 			
+			
 		}
-			
-			
-			// Cuadrado
-			if(cuadrado.getX()<0)	cuadrado.setX(0);
-				
-			if((cuadrado.getX()+cuadrado.getAltura())>ANCHO_VENTANA) cuadrado.setX(ANCHO_VENTANA-cuadrado.getAltura());
-			
-			if(cuadrado.getY()<0)	cuadrado.setY(0);
 
-			if((cuadrado.getY()+cuadrado.getAltura())>ALTO_VENTANA) cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura());
+		// Cuadrado
+		if(cuadrado.getX()<0)
+			cuadrado.setX(0);
+			
+		if((cuadrado.getX()+cuadrado.getAltura())>ANCHO_VENTANA)
+			cuadrado.setX(ANCHO_VENTANA-cuadrado.getAltura());
+		
+		if(cuadrado.getY()<0)
+			cuadrado.setY(0);
+
+		if((cuadrado.getY()+cuadrado.getAltura())>ALTO_VENTANA)
+			cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura());
 
 	}
 	
