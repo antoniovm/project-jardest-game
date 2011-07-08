@@ -15,11 +15,15 @@ public class Nivel extends JPanel{
 	private LinkedList<Circulo> bolas;
 
 	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {
-		this.colision=new Colision(bolas, cuadrado);
+		
+		
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
 		this.ventana=ventana;
 		cuadrado.setVisible(true);
+		construirBolas(new Circulo(5, 0, 0));
+		this.colision=new Colision(bolas, cuadrado);
+		
 	}
 	
 	public void construirBolas(Circulo circulo) {
