@@ -23,13 +23,13 @@ public class GamePlay {
 		int i=0;
 		while(true){
 			double tiempoNuevo = System.currentTimeMillis();
-			double dt = 2;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
+			double dt = 1;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
 			i++;
 			try {
-				Thread.sleep(100);	
+				Thread.sleep(15);	
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
