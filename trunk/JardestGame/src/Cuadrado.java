@@ -22,7 +22,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.x=0;
 		this.y=200;
 		this.presionado = false;
-		this.velocidad = new Velocidad(0,0); //velocidad por defecto?
+		this.velocidad = new Velocidad();
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(this);
