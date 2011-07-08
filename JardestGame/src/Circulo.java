@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 
 public class Circulo extends Rectangle{
-	private int radio;
+	private double radio;
 	private Velocidad velocidad;
 	//private int tiempoViejo;
 	
@@ -12,19 +12,19 @@ public class Circulo extends Rectangle{
 		radio = 5;
 	}
 	
-	Circulo(int radio, int i, int j){
+	Circulo(double radio, int i, int j){
 		this.radio = radio;
 		velocidad = new Velocidad(i,j);
 	}
 
-	public Circulo(int i, int j, int k, int l, int vx, int vy, int radio) {
-		super(i,j,k,l);
+	public Circulo(double x, double y, double width, double height, double vx, double vy, double radio) {
+		super((int)x,(int)y,(int)width,(int)height);
 		this.radio = radio;
 		velocidad = new Velocidad(vx, vy);
 		//tiempoViejo = (int)System.nanoTime();
 	}
 
-	public int getRadio() {
+	public double getRadio() {
 		return radio;
 	}
 
@@ -32,18 +32,18 @@ public class Circulo extends Rectangle{
 		this.radio = radio;
 	}
 	
-	public int getCentroX(){
+	public double getCentroX(){
 		return x+radio;
 	}
 	
-	public int getCentroY(){
+	public double getCentroY(){
 		return y+radio;
 	}
 	
 	public void mover(double dt){
-		Dimension dim = velocidad.mover(dt);
-		this.x += dim.width;
-		this.y += dim.height;
+		Punto dim = velocidad.mover(dt);
+		this.x += dim.getX();
+		this.y += dim.getY();
 	}
 	
 	public void retroceder(){

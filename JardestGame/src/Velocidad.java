@@ -15,8 +15,8 @@ public class Velocidad {
 		this.j=j;
 	}
 	
-	Dimension mover(double dt){
-		return new Dimension((int)(i*dt),(int)(j*dt));
+	Punto mover(double dt){
+		return new Punto((i*dt),(j*dt));
 	}
 	
 	void setComponentes(double i, double j) {

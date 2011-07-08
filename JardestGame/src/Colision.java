@@ -7,7 +7,7 @@ public class Colision extends Thread{
 
 	private LinkedList<Circulo> bolas;
 	private Cuadrado cuadrado;
-	private int limite;
+	private double limite;
 	private static int ANCHO_VENTANA, ALTO_VENTANA;
 	
 	public Colision(LinkedList<Circulo> bolas, Cuadrado cuadrado, Dimension ventana) {
@@ -34,7 +34,7 @@ public class Colision extends Thread{
 			}
 			
 			//  Pared Izq		Pared Der	--Circulos--     		Pared Sup		Pared Inf
-			if((aux.getX()<0)||((aux.getX()+aux.getRadio())>ANCHO_VENTANA)||(aux.getY()<0)||((aux.getY()+aux.getRadio())>ALTO_VENTANA-40)){
+			if((aux.getX()<0)||((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA)||(aux.getY()<0)||((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA)){
 				aux.retroceder();
 			}
 			
@@ -51,8 +51,8 @@ public class Colision extends Thread{
 		if(cuadrado.getY()<0)
 			cuadrado.setY(0);
 
-		if((cuadrado.getY()+cuadrado.getAltura())>ALTO_VENTANA-17) //17 depende del tamaño del cuadrado
-			cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura()-17);
+		if((cuadrado.getY()+cuadrado.getAltura())>ALTO_VENTANA) //17 depende del tamaño del cuadrado
+			cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura());
 
 	}
 	

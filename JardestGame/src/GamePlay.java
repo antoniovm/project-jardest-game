@@ -3,6 +3,7 @@ import java.util.LinkedList;
 
 
 public class GamePlay {
+	private static final int fps=60;
 	private Dimension ventana;
 	private Cuadrado cuadrado;
 	private LinkedList<Circulo> bolas;
@@ -23,13 +24,13 @@ public class GamePlay {
 		int i=0;
 		while(true){
 			double tiempoNuevo = System.currentTimeMillis();
-			double dt = 1;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
+			double dt = (double)1/fps;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
 			i++;
 			try {
-				Thread.sleep(15);	
+				Thread.sleep((int)(((double)1/fps)*1000));	
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
