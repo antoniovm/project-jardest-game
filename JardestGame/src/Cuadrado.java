@@ -72,6 +72,14 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.mitadAltura = mitadAltura;
 	}
 	
+	public int getCentroX(){
+		return x+mitadAltura;
+	}
+	
+	public int getCentroY(){
+		return y+mitadAltura;
+	}
+	
 	public void mover(double dt){
 		Dimension dim = velocidad.mover(dt);
 		this.x += dim.width;
@@ -80,7 +88,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	
 	public void paint(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect(x, y, mitadAltura, mitadAltura);
+		g.fillRect(x, y, altura, altura);
 	}
 
 	@Override
