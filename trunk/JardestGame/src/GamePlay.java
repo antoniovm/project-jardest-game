@@ -23,7 +23,7 @@ public class GamePlay {
 		int i=0;
 		while(true){
 			double tiempoNuevo = System.currentTimeMillis();
-			double dt = i;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
+			double dt = 2;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
