@@ -7,7 +7,8 @@ public class Velocidad {
 	
 	
 	public Velocidad() {
-		// TODO Auto-generated constructor stub
+		this.i=0;
+		this.j=0;
 	}
 	public Velocidad(double i, double j) {
 		this.i=i;
