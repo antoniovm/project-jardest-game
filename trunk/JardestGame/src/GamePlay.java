@@ -26,12 +26,12 @@ public class GamePlay {
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
-			try {
+			/*try {
 				Thread.sleep(33);	// 30 fps
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		}
 
 	}
