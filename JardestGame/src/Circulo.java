@@ -17,8 +17,9 @@ public class Circulo extends Rectangle{
 		velocidad = new Velocidad(i,j);
 	}
 
-	public Circulo(int i, int j, int k, int l, int vx, int vy) {
+	public Circulo(int i, int j, int k, int l, int vx, int vy, int radio) {
 		super(i,j,k,l);
+		this.radio = radio;
 		velocidad = new Velocidad(vx, vy);
 		//tiempoViejo = (int)System.nanoTime();
 	}

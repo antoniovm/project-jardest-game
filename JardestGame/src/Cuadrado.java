@@ -74,8 +74,8 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	
 	public void mover(double dt){
 		Dimension dim = velocidad.mover(dt);
-		this.x = dim.width;
-		this.y = dim.height;
+		this.x += dim.width;
+		this.y += dim.height;
 	}
 	
 	public void paint(Graphics g) {

@@ -11,7 +11,7 @@ public class Computo {
 	private LinkedList<Circulo> bolas;
 
 	public Computo(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {
-		this.colision=new Colision(bolas, cuadrado);
+		this.colision=new Colision(bolas, cuadrado, ventana);
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
 		this.ventana=ventana;
