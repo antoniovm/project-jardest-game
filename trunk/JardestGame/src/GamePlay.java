@@ -20,18 +20,20 @@ public class GamePlay {
 	
 	public void start() {	//Bucle principal del juego
 		double tiempoViejo=System.currentTimeMillis();
+		int i=0;
 		while(true){
 			double tiempoNuevo = System.currentTimeMillis();
-			double dt = (tiempoNuevo - tiempoViejo)/1000; //segundos 
+			double dt = i;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
 			tiempoViejo = tiempoNuevo;
 			computo.siguienteEstado(dt);
 			nivel.repintar();
-			/*try {
-				Thread.sleep(33);	// 30 fps
+			i++;
+			try {
+				Thread.sleep(100);	
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 		}
 
 	}
