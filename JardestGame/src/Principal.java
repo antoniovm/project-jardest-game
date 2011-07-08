@@ -20,7 +20,7 @@ public class Principal {
 	public static void main(String[] args) {
 		frame = new JFrame();
 		//gui = new InterfazGrafica();
-		cuadrado=new Cuadrado(5);
+		cuadrado=new Cuadrado(15);
 		bolas= new LinkedList<Circulo>();
 		nivel=new Nivel(cuadrado, bolas, new Dimension(500,500));
 		frame.getContentPane().add(nivel);
