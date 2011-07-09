@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -14,27 +16,30 @@ public class Nivel extends JPanel{
 	private Cuadrado cuadrado;
 	private LinkedList<Circulo> bolas;
 
-	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {
-		
-		
+	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {	
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
-		this.ventana=ventana;
+		this.setVentana(ventana);
 		cuadrado.setVisible(true);
-		construirBolas(new Circulo(5, 0, 0));
-		this.colision=new Colision(bolas, cuadrado, ventana);
+		tamanoVentanaPorDefecto(ventana);
+		this.setSize(ventana);
+		construirBolas(20,5);
+		this.setColision(new Colision(bolas, cuadrado, ventana));
+		
+		
+		
 	}
 	
-	public void construirBolas(Circulo circulo) {
-		for(int i=0; i<20; i++){
+	public void construirBolas(int numBolas,int radio) {
+		for(int i=0; i<numBolas; i++){
 			if(i%2==0){
 				//las pares empiezan arriba
-				bolas.add( new Circulo(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2, 0, 100, circulo.getRadio()));
+				bolas.add( new Circulo(i*(radio+20), radio, radio*2, radio*2, 0, 250, radio, Color.blue));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 			else{
 				//las impares empiezan abajo (no cuadra el this.getHeight(), tengo que sumarle 460 cuando no deberia hacer falta)
-				bolas.add( new Circulo(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2, 0 ,-100, circulo.getRadio()));
+				bolas.add( new Circulo(i*(radio+20), this.getHeight()-radio*2, radio*2, radio*2, 0 ,-250, radio,Color.red));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 		}
@@ -51,18 +56,37 @@ public class Nivel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		Iterator<Circulo> it=bolas.iterator();
 		for(int i=0; it.hasNext(); i++){
-			Circulo aux = it.next();
-			if(i%2==0)
-				g.setColor(Color.blue);
-			else
-				g.setColor(Color.red);
-			g.fillOval(aux.x, aux.y, aux.width, aux.height); //pintamos el circulo con las coordenadas y tamaño del rectangulo
+			it.next().paint(g);
 		}
 			//g.drawString(prueba, 100, 100);
 			
 		cuadrado.paint(g);
+	}
+	
+	public void tamanoVentanaPorDefecto(Dimension ventana) {
+		setPreferredSize(ventana);
+		setMinimumSize(ventana);
+		setMaximumSize(ventana);
+
+	}
+
+	public void setVentana(Dimension ventana) {
+		this.ventana = ventana;
+	}
+
+	public Dimension getVentana() {
+		return ventana;
+	}
+
+	public void setColision(Colision colision) {
+		this.colision = colision;
+	}
+
+	public Colision getColision() {
+		return colision;
 	}
 	
 }

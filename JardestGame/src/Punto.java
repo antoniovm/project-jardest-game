@@ -1,7 +1,7 @@
 import java.awt.Point;
 
 
-public class Punto extends Point{
+public class Punto {
 	private double x, y;
 	
 	public Punto(double x, double y) {

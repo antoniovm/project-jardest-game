@@ -22,26 +22,19 @@ public class Principal {
 		//gui = new InterfazGrafica();
 		cuadrado=new Cuadrado(15);
 		bolas= new LinkedList<Circulo>();
+		frame.setResizable(false);	//TU PUTA MADRE CABRON!
 		nivel=new Nivel(cuadrado, bolas, new Dimension(500,500));
 		frame.getContentPane().add(nivel);
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		computo=new Computo(cuadrado, bolas, new Dimension(500,500));
-		gp=new GamePlay(computo, nivel);
-		
-		frame.setVisible(true);
-		frame.setSize(500,500);
+		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		computo.setAncho(nivel.getWidth());
-		computo.setAlto(nivel.getHeight());
+		
+		computo=new Computo(cuadrado, bolas, new Dimension(nivel.getWidth(),nivel.getHeight()));
+		gp=new GamePlay(computo, nivel);
+		frame.setVisible(true);
 		gp.start();
 		
 	}
