@@ -40,6 +40,8 @@ public class Principal {
 		frame.setSize(500,500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		computo.setAncho(nivel.getWidth());
+		computo.setAlto(nivel.getHeight());
 		gp.start();
 		
 	}

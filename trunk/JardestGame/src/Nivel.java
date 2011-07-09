@@ -23,7 +23,6 @@ public class Nivel extends JPanel{
 		cuadrado.setVisible(true);
 		construirBolas(new Circulo(5, 0, 0));
 		this.colision=new Colision(bolas, cuadrado, ventana);
-		
 	}
 	
 	public void construirBolas(Circulo circulo) {

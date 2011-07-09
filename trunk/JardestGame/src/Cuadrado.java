@@ -32,7 +32,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.altura = altura;
 		this.mitadAltura = altura/2;
 		this.x=0;
-		this.y=0;
+		this.y=200;
 		this.presionado = false;
 		this.velocidad = new Velocidad();
 		setFocusable(true);
