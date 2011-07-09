@@ -19,10 +19,10 @@ public class Computo {
 
 	public void siguienteEstado(double dt){
 		for (Iterator<Circulo> iterator = bolas.iterator(); iterator.hasNext();) {
-			iterator.next().mover(dt);
-		}
-		cuadrado.mover(dt);
-		colision.comprobar();
+			iterator.next().mover(dt);	//Mover las bolas
+		}								
+		cuadrado.mover(dt);				//Mover cuadrado
+		colision.comprobar();			// Comprobar colisiones
 		
 		
 	}
@@ -66,6 +66,7 @@ public class Computo {
 	public void setBolas(LinkedList<Circulo> bolas) {
 		this.bolas = bolas;
 	}
+	
 	
 
 }

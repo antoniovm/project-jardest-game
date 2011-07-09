@@ -34,12 +34,12 @@ public class Nivel extends JPanel{
 		for(int i=0; i<numBolas; i++){
 			if(i%2==0){
 				//las pares empiezan arriba
-				bolas.add( new Circulo(i*(radio+20), radio, radio*2, radio*2, 0, 250, radio, Color.blue));
+				bolas.add( new Circulo(i*(radio+20), radio, radio*2, radio*2, 250, Math.PI/2, radio, Color.blue));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), 0+circulo.getRadio(), circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 			else{
 				//las impares empiezan abajo (no cuadra el this.getHeight(), tengo que sumarle 460 cuando no deberia hacer falta)
-				bolas.add( new Circulo(i*(radio+20), this.getHeight()-radio*2, radio*2, radio*2, 0 ,-250, radio,Color.red));
+				bolas.add( new Circulo(i*(radio+20), this.getHeight()-radio*2, radio*2, radio*2, 250 ,-Math.PI/2, radio,Color.red));
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 		}

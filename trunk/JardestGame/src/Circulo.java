@@ -22,13 +22,13 @@ public class Circulo {
 		velocidad = new Velocidad(i,j);
 	}
 
-	public Circulo(double x, double y, double ancho, double alto, double vx, double vy, double radio, Color color) {
+	public Circulo(double x, double y, double ancho, double alto, double modulo, double angulo, double radio, Color color) {
 		this.x=x;
 		this.y=y;
 		this.ancho=ancho;
 		this.alto=alto;
 		this.radio = radio;
-		velocidad = new Velocidad(vx, vy);
+		velocidad = new Velocidad(modulo, angulo);
 		this.color=color;
 		
 	}
@@ -113,6 +113,18 @@ public class Circulo {
 
 	public void retroceder(){
 		velocidad.cambiarSentido();
+	}
+	
+	public Punto getCompoentesVelocidad() {
+		return new Punto(velocidad.getI(),velocidad.getJ());
+	}
+	
+	@Override
+	public String toString() {
+		return "Origen: ("+x+","+y+")\n"+
+			   "Dim: ("+ancho+","+alto+")\n"+
+			   "Radio: "+radio+"\n"+
+			   "Velocidad: "+velocidad.toString();
 	}
 
 	
