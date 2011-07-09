@@ -1,9 +1,12 @@
 import java.awt.Dimension;
+import java.awt.DisplayMode;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.LinkedList;
 
 
 public class GamePlay {
-	private static final int fps=60;
+	private static int fps;
 	private Dimension ventana;
 	private Cuadrado cuadrado;
 	private LinkedList<Circulo> bolas;
@@ -17,16 +20,16 @@ public class GamePlay {
 		this.ventana=new Dimension(500,500);
 		this.computo=computo;
 		this.nivel=nivel;
+		frecuenciaRefrescoSO();
 	}
 	
 	public void start() {	//Bucle principal del juego
-		double tiempoViejo=System.currentTimeMillis();
 		while(true){
-			double tiempoNuevo = System.currentTimeMillis();
-			double dt = (double)1/fps;//(tiempoNuevo - tiempoViejo)/1000; //segundos 
-			tiempoViejo = tiempoNuevo;
+			double dt = (double)1/fps;
+			
 			computo.siguienteEstado(dt);
 			nivel.repintar();
+			
 			try {
 				Thread.sleep((int)(((double)1/fps)*1000));	
 			} catch (InterruptedException e) {
@@ -34,6 +37,16 @@ public class GamePlay {
 				e.printStackTrace();
 			}
 		}
+
+	}
+	
+	private void frecuenciaRefrescoSO() {	// LLamada al sistema para obtener la frecuencia de refresco del monitor 
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice gs = ge.getDefaultScreenDevice();
+		DisplayMode dmode = gs.getDisplayMode();
+		
+		fps = dmode.getRefreshRate();
+		
 
 	}
 }
