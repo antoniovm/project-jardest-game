@@ -1,27 +1,40 @@
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
-public class Circulo extends Rectangle{
+public class Circulo {
+	private double x, y, ancho,alto;
+	private Color color;
 	private double radio;
 	private Velocidad velocidad;
 	//private int tiempoViejo;
 	
-	Circulo(){
+	public Circulo(){
 		radio = 5;
 	}
 	
-	Circulo(double radio, int i, int j){
+	public Circulo(double radio, int i, int j){
+		this.color=Color.blue;
 		this.radio = radio;
 		velocidad = new Velocidad(i,j);
 	}
 
-	public Circulo(double x, double y, double width, double height, double vx, double vy, double radio) {
-		super((int)x,(int)y,(int)width,(int)height);
+	public Circulo(double x, double y, double ancho, double alto, double vx, double vy, double radio, Color color) {
+		this.x=x;
+		this.y=y;
+		this.ancho=ancho;
+		this.alto=alto;
 		this.radio = radio;
 		velocidad = new Velocidad(vx, vy);
-		//tiempoViejo = (int)System.nanoTime();
+		this.color=color;
+		
+	}
+	public void paint(Graphics g) {
+		g.setColor(color);
+		g.fillOval((int)x, (int)y, (int)this.ancho, (int)this.alto);
 	}
 
 	public double getRadio() {
@@ -46,6 +59,58 @@ public class Circulo extends Rectangle{
 		this.y += dim.getY();
 	}
 	
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getAncho() {
+		return ancho;
+	}
+
+	public void setAncho(double ancho) {
+		this.ancho = ancho;
+	}
+
+	public double getAlto() {
+		return alto;
+	}
+
+	public void setAlto(double alto) {
+		this.alto = alto;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Velocidad getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(Velocidad velocidad) {
+		this.velocidad = velocidad;
+	}
+
+	public void setRadio(double radio) {
+		this.radio = radio;
+	}
+
 	public void retroceder(){
 		velocidad.cambiarSentido();
 	}

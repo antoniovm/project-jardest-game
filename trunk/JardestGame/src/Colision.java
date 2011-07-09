@@ -14,8 +14,8 @@ public class Colision extends Thread{
 		this.bolas=bolas;
 		this.cuadrado=cuadrado;
 		this.limite = (cuadrado.getMitadAltura() + bolas.get(0).getRadio());
-		//this.ANCHO_VENTANA = 500;
-		//this.ALTO_VENTANA = 500;
+		this.ANCHO_VENTANA = (int) ventana.getWidth();
+		this.ALTO_VENTANA = (int) ventana.getHeight();
 
 	}
 	
@@ -42,13 +42,34 @@ public class Colision extends Thread{
 				cuadrado.setY(ALTO_VENTANA/2);
 			}
 			
-			//  Pared Izq		Pared Der	--Circulos--     		Pared Sup		Pared Inf
-			if((aux.getX()<0)||((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA)||(aux.getY()<0)||((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA)){
+			//  Pared Izq		
+			if(aux.getX()<0){
 				aux.retroceder();
+				aux.setX(0);
+			}
+			//  Pared Derecha
+			if((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA){
+				aux.retroceder();
+				aux.setX(ANCHO_VENTANA-aux.getRadio()*2);
+			}
+			// Pared Sup
+			if(aux.getY()<0){
+				aux.retroceder();
+				aux.setY(0);
+			}
+			// Pared Inf
+			if((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA){
+				aux.retroceder();
+				aux.setY(ANCHO_VENTANA-aux.getRadio()*2);
 			}
 			
 			
 		}
+		
+		
+		
+		
+		
 
 		// Cuadrado
 		if(cuadrado.X()<0)

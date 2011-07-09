@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 
 public class Cuadrado extends JComponent implements KeyListener{ //jcomponent para poder pedir focus
+	private Color color;
 	private double altura;
 	private double mitadAltura;
 	private double x, y;
@@ -17,6 +18,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	private Velocidad velocidad;
 	
 	Cuadrado(){
+		this.color = Color.green;
 		this.altura = 20;
 		this.mitadAltura = altura/2;
 		this.x=0;
@@ -29,6 +31,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	}
 	
 	Cuadrado(int altura){
+		this.color = Color.green;
 		this.altura = altura;
 		this.mitadAltura = altura/2;
 		this.x=0;
@@ -92,7 +95,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	}
 	
 	public void paint(Graphics g) {
-		g.setColor(Color.green);
+		g.setColor(color);
 		g.fillRect((int)x, (int)y, (int)altura, (int)altura);
 	}
 
