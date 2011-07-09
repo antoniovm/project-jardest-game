@@ -26,6 +26,14 @@ public class Computo {
 		
 		
 	}
+	
+	public void setAncho(int ancho){
+		colision.setAncho(ancho);
+	}
+	
+	public void setAlto(int alto){
+		colision.setAlto(alto);
+	}
 
 	public Dimension getVentana() {
 		return ventana;

@@ -8,14 +8,23 @@ public class Colision extends Thread{
 	private LinkedList<Circulo> bolas;
 	private Cuadrado cuadrado;
 	private double limite;
-	private static int ANCHO_VENTANA, ALTO_VENTANA;
+	private int ANCHO_VENTANA, ALTO_VENTANA;
 	
 	public Colision(LinkedList<Circulo> bolas, Cuadrado cuadrado, Dimension ventana) {
 		this.bolas=bolas;
 		this.cuadrado=cuadrado;
 		this.limite = (cuadrado.getMitadAltura() + bolas.get(0).getRadio());
-		this.ANCHO_VENTANA = ventana.width;
-		this.ALTO_VENTANA = ventana.height;
+		//this.ANCHO_VENTANA = 500;
+		//this.ALTO_VENTANA = 500;
+
+	}
+	
+	public void setAncho(int ancho){
+		this.ANCHO_VENTANA = ancho;
+	}
+	
+	public void setAlto(int alto){
+		this.ALTO_VENTANA = alto;
 	}
 	
 	@Override
