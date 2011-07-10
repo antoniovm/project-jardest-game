@@ -63,6 +63,19 @@ public class Velocidad {
 		j = Math.sin(angulo)*modulo;
 
 	}
+	public void rebote(String s) {
+		if(s.equals("i")){
+			i=-i;
+			rectangulasresPolares();
+			return;
+		}
+		if(s.equals("j")){
+			j=-j;
+			rectangulasresPolares();
+			return;
+		}
+
+	}
 	
 	@Override
 	public String toString() {
