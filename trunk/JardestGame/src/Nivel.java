@@ -43,6 +43,8 @@ public class Nivel extends JPanel{
 				//rects[i] = new Rectangle(i*(circulo.getRadio()+20), this.getHeight()+460, circulo.getRadio()*2, circulo.getRadio()*2);
 			}
 		}
+		bolas.get(0).setVelocidad(new Velocidad(250, Math.PI/4));
+		bolas.get(1).setVelocidad(new Velocidad(250, Math.PI/4));
 		this.add(cuadrado);
 		
 

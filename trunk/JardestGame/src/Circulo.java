@@ -115,6 +115,10 @@ public class Circulo {
 		velocidad.cambiarSentido();
 	}
 	
+	public void rebotar(String s) {
+		velocidad.rebote(s);
+	}
+	
 	public Punto getCompoentesVelocidad() {
 		return new Punto(velocidad.getI(),velocidad.getJ());
 	}

@@ -42,24 +42,28 @@ public class Colision extends Thread{
 				cuadrado.setY(ALTO_VENTANA/2);
 			}
 			
+			//Si no hay colision, no se comprueba con qué pared.
+			//if(!paredesCirculos(aux)) continue;
+			
+			
 			//  Pared Izq		
 			if(aux.getX()<0){
-				//aux.retroceder();	//HAY QUE REVISAR ESTO
+				aux.rebotar("i");
 				aux.setX(0);
 			}
 			//  Pared Derecha
 			if((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA){
-				aux.retroceder();
+				aux.rebotar("i");
 				aux.setX(ANCHO_VENTANA-aux.getRadio()*2);
 			}
 			// Pared Sup
 			if(aux.getY()<0){
-				aux.retroceder();	//Y ESTO
+				aux.rebotar("j");
 				aux.setY(0);
 			}
 			// Pared Inf
 			if((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA){
-				aux.retroceder();
+				aux.rebotar("j");
 				aux.setY(ANCHO_VENTANA-aux.getRadio()*2);
 			}
 			
@@ -80,6 +84,19 @@ public class Colision extends Thread{
 		// Pared Inf
 		if((cuadrado.Y()+cuadrado.getAltura())>ALTO_VENTANA) //17 depende del tamaño del cuadrado
 			cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura());
+
+	}
+	
+	private boolean paredesCirculos(Circulo aux) {
+			
+		if((aux.getX()<0)||((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA)||(aux.getY()<0)||((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA)){
+			aux.retroceder();
+			return true;
+		}
+		return false;
+		
+			
+		
 
 	}
 	
