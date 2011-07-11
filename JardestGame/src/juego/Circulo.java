@@ -42,7 +42,7 @@ public class Circulo {
 		g.fillOval((int)x, (int)y, (int)this.ancho, (int)this.alto);
 		g.setColor(Color.black);
 		for (int i = 0; i < tamBorde; i++) {
-			g.drawOval(((int)x)-i, (int)y-i, ((int)ancho)+2*i, ((int)alto)+2*i);
+			g.drawOval(((int)x)-i, (int)y-i, ((int)ancho)+2*i-1, ((int)alto)+2*i-1);
 		}
 	}
 
