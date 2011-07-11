@@ -42,9 +42,7 @@ public class Colision extends Thread{
 				cuadrado.setX(0);
 				cuadrado.setY(ALTO_VENTANA/2);
 			}
-			
-			//Si no hay colision, no se comprueba con qué pared.
-			//if(!paredesCirculos(aux)) continue;
+		
 			
 			
 			//  Pared Izq		
@@ -65,7 +63,7 @@ public class Colision extends Thread{
 			// Pared Inf
 			if((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA){
 				aux.rebotar("j");
-				aux.setY(ANCHO_VENTANA-aux.getRadio()*2);
+				aux.setY(ALTO_VENTANA-aux.getRadio()*2);
 			}
 			
 		}
