@@ -1,3 +1,4 @@
+package juego;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -20,7 +21,7 @@ public class Principal {
 	public static void main(String[] args) {
 		frame = new JFrame();
 		//gui = new InterfazGrafica();
-		cuadrado=new Cuadrado(15);
+		cuadrado=new Cuadrado(12);
 		bolas= new LinkedList<Circulo>();
 		frame.setResizable(false);	//TU PUTA MADRE CABRON!
 		nivel=new Nivel(cuadrado, bolas, new Dimension(500,500));

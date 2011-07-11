@@ -1,3 +1,4 @@
+package juego;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +11,6 @@ public class Circulo {
 	private Color color;
 	private double radio;
 	private Velocidad velocidad;
-	//private int tiempoViejo;
 	
 	public Circulo(){
 		radio = 5;
@@ -32,9 +32,18 @@ public class Circulo {
 		this.color=color;
 		
 	}
+	/**
+	 * Pinta el circulo
+	 * @param g El objeto grafico sobre el cual se pinta
+	 */
 	public void paint(Graphics g) {
+		int tamBorde=3;
 		g.setColor(color);
 		g.fillOval((int)x, (int)y, (int)this.ancho, (int)this.alto);
+		g.setColor(Color.black);
+		for (int i = 0; i < tamBorde; i++) {
+			g.drawOval(((int)x)-i, (int)y-i, ((int)ancho)+2*i, ((int)alto)+2*i);
+		}
 	}
 
 	public double getRadio() {
@@ -52,7 +61,10 @@ public class Circulo {
 	public double getCentroY(){
 		return y+radio;
 	}
-	
+	/**
+	 * Mueve el objeto sobre la pantalla, en funcion de su velocidad en un intervalo de tiempo
+	 * @param dt El intervalo de tiempo en segundos
+	 */
 	public void mover(double dt){
 		Punto dim = velocidad.mover(dt);
 		this.x += dim.getX();
