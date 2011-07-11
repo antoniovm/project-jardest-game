@@ -17,14 +17,16 @@ public class Principal {
 	private static GamePlay gp;
 	private static LinkedList<Circulo> bolas;
 	private static Cuadrado cuadrado;
+	private static Dimension dimensionVentana;
 	
 	public static void main(String[] args) {
+		dimensionVentana=new Dimension(550, 400);
 		frame = new JFrame();
 		//gui = new InterfazGrafica();
 		cuadrado=new Cuadrado(12);
 		bolas= new LinkedList<Circulo>();
 		frame.setResizable(false);	//TU PUTA MADRE CABRON!
-		nivel=new Nivel(cuadrado, bolas, new Dimension(500,500));
+		nivel=new Nivel(cuadrado, bolas, dimensionVentana);
 		frame.getContentPane().add(nivel);
 		
 		
@@ -33,8 +35,8 @@ public class Principal {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		computo=new Computo(cuadrado, bolas, new Dimension(nivel.getWidth(),nivel.getHeight()));
-		gp=new GamePlay(computo, nivel);
+		computo=new Computo(cuadrado, bolas, dimensionVentana);
+		gp=new GamePlay(computo, nivel,dimensionVentana);
 		frame.setVisible(true);
 		gp.start();
 		

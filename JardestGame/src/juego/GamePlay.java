@@ -15,10 +15,10 @@ public class GamePlay {
 	private Nivel nivel;
 	
 
-	public GamePlay(Computo computo, Nivel nivel) {
+	public GamePlay(Computo computo, Nivel nivel, Dimension ventana) {
 		this.cuadrado=new Cuadrado(5);
 		this.bolas=new LinkedList<Circulo>();
-		this.ventana=new Dimension(500,500);
+		this.ventana=ventana;
 		this.computo=computo;
 		this.nivel=nivel;
 		frecuenciaRefrescoSO();
