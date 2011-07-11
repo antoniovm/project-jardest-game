@@ -1,3 +1,4 @@
+package juego;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,7 +24,7 @@ public class Nivel extends JPanel{
 		cuadrado.setVisible(true);
 		tamanoVentanaPorDefecto(ventana);
 		this.setSize(ventana);
-		construirBolas(20,5);
+		construirBolas(20,4);
 		this.setColision(new Colision(bolas, cuadrado, ventana));
 		
 		
@@ -59,6 +60,8 @@ public class Nivel extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setColor(new Color(0xb4b5fe));
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		Iterator<Circulo> it=bolas.iterator();
 		for(int i=0; it.hasNext(); i++){
 			it.next().paint(g);

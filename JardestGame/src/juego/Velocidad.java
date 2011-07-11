@@ -1,4 +1,4 @@
-import java.awt.Dimension;
+package juego;
 
 
 public class Velocidad {
@@ -16,6 +16,26 @@ public class Velocidad {
 		this.j=j;
 	}*/
 	
+	public double getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(double modulo) {
+		this.modulo = modulo;
+	}
+
+	public double getAngulo() {
+		return angulo;
+	}
+
+	public void setAngulo(double angulo) {
+		this.angulo = angulo;
+	}
+	/**
+	 * Constructor en coordenadas polares
+	 * @param modulo	El modulo de la velocidad
+	 * @param angulo	El angulo respecto al eje OX
+	 */
 	public Velocidad(double modulo, double angulo) {
 		this.modulo=modulo;
 		this.angulo=angulo;
@@ -45,24 +65,35 @@ public class Velocidad {
 		this.j = j;
 		rectangulasresPolares();
 	}
-	
+	/**
+	 * Cambia el sentido del vector
+	 */
 	public void cambiarSentido(){
 		i=-i;
 		j=-j;
 		rectangulasresPolares();
 	}
-	
+	/**
+	 * Pasa de coordenadas rectangulares a coordenadas polares
+	 */
 	private void rectangulasresPolares() {
 		modulo = Math.sqrt(i*i+j*j);	//Pitagoras (Hipotenusa)
 		angulo = Math.atan2(i, j);		
 
 	}
-	
+	/**
+	 * Pasa de coordenadas polares a coordenadas rectangulares
+	 */
 	private void polaresRectangulares() {
 		i = Math.cos(angulo)*modulo;
 		j = Math.sin(angulo)*modulo;
 
 	}
+	
+	/**
+	 * Cambia la direccion del vector, en funcion del rebote
+	 * @param s	La componente del vector que cambia de sentido
+	 */
 	public void rebote(String s) {
 		if(s.equals("i")){
 			i=-i;

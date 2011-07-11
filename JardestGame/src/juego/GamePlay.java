@@ -1,3 +1,4 @@
+package juego;
 import java.awt.Dimension;
 import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;
@@ -22,8 +23,10 @@ public class GamePlay {
 		this.nivel=nivel;
 		frecuenciaRefrescoSO();
 	}
-	
-	public void start() {	//Bucle principal del juego
+	/**
+	 * Bucle principal del juego
+	 */
+	public void start() {	
 		while(true){
 			double dt = (double)1/fps;
 			
@@ -39,8 +42,10 @@ public class GamePlay {
 		}
 
 	}
-	
-	private void frecuenciaRefrescoSO() {	// LLamada al sistema para obtener la frecuencia de refresco del monitor 
+	/**
+	 * LLamada al sistema para obtener la frecuencia de refresco del monitor
+	 */
+	private void frecuenciaRefrescoSO() {	 
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice gs = ge.getDefaultScreenDevice();
 		DisplayMode dmode = gs.getDisplayMode();
@@ -48,5 +53,41 @@ public class GamePlay {
 		fps = dmode.getRefreshRate();
 		
 
+	}
+	public static int getFps() {
+		return fps;
+	}
+	public static void setFps(int fps) {
+		GamePlay.fps = fps;
+	}
+	public Dimension getVentana() {
+		return ventana;
+	}
+	public void setVentana(Dimension ventana) {
+		this.ventana = ventana;
+	}
+	public Cuadrado getCuadrado() {
+		return cuadrado;
+	}
+	public void setCuadrado(Cuadrado cuadrado) {
+		this.cuadrado = cuadrado;
+	}
+	public LinkedList<Circulo> getBolas() {
+		return bolas;
+	}
+	public void setBolas(LinkedList<Circulo> bolas) {
+		this.bolas = bolas;
+	}
+	public Computo getComputo() {
+		return computo;
+	}
+	public void setComputo(Computo computo) {
+		this.computo = computo;
+	}
+	public Nivel getNivel() {
+		return nivel;
+	}
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 }

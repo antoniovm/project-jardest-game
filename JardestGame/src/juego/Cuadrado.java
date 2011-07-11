@@ -1,7 +1,7 @@
+package juego;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -10,11 +10,7 @@ import javax.swing.JComponent;
 
 public class Cuadrado extends JComponent implements KeyListener{ //jcomponent para poder pedir focus
 	private Color color;
-	private double altura;
-	private double mitadAltura;
-	private double x, y;
-	private float vx, vy; //para fisica()
-	private boolean presionado, arriba, abajo, derecha, izquierda; //aux, para que al dejar pulsada la tecla no se inicie el hilo muchas veces
+	private double altura, mitadAltura, x,y, vMaxima;
 	private Velocidad velocidad;
 	
 	Cuadrado(){
@@ -23,25 +19,16 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.mitadAltura = altura/2;
 		this.x=0;
 		this.y=200;
-		this.presionado = false;
 		this.velocidad = new Velocidad();
+		this.vMaxima=200;
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(this);
 	}
 	
 	Cuadrado(int altura){
-		this.color = Color.green;
+		this();
 		this.altura = altura;
-		this.mitadAltura = altura/2;
-		this.x=0;
-		this.y=200;
-		this.presionado = false;
-		this.velocidad = new Velocidad();
-		setFocusable(true);
-		requestFocusInWindow();
-		addKeyListener(this);
-		
 	}
 	
 
@@ -49,8 +36,6 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.x = x;
 	}
 
-	
-	
 
 	public double X() {
 		return x;
@@ -87,32 +72,39 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	public double getCentroY(){
 		return y+mitadAltura;
 	}
-	
+	/**
+	 * Mueve el objeto sobre la pantalla, en funcion de su velocidad en un intervalo de tiempo
+	 * @param dt El intervalo de tiempo en segundos
+	 */
 	public void mover(double dt){
 		Punto dim = velocidad.mover(dt);
 		this.x += dim.getX();
 		this.y += dim.getY();
 	}
-	
+	/**
+	 * Pinta el cuadrado
+	 * @param g El objeto grafico sobre el cual se pinta
+	 */
 	public void paint(Graphics g) {
+		int tamBorde=3;
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, (int)altura, (int)altura);
+		g.setColor(Color.black);
+		for (int i = 1; i <= tamBorde; i++) {
+			g.drawRect(((int)x)-i, (int)y-i, ((int)altura)+2*i-1, ((int)altura)+2*i-1);
+		}
+		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//si lo metemos dentro de !presionado, si queda alguna pulsada (true), al hacer released no llamara a actualizar y no cambiara la velocidad
-		actualizar(e.getKeyCode(),200);
-		/*if(!this.presionado){ //si es la primera vez que pulso la tecla (no multiples evento de dejarla pulsada)
-			this.presionado=true;
-		}*/
+		actualizar(e.getKeyCode(),vMaxima);
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		actualizar(e.getKeyCode(), 0);
-		//this.presionado = arriba || abajo || derecha || izquierda;
 	}
 
 	@Override
@@ -120,27 +112,31 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		
 	}
 	
-	//actualizar direccion de movimiento
-	private void actualizar(int keyCode, double valor){
+	/**
+	 * Establece una determinada velocidad dependiendo de las teclas pulsadas
+	 * @param keyCode	El codigo de la tecla pulsada
+	 * @param modulo		El modulo de la velocidad
+	 */
+	private void actualizar(int keyCode, double modulo){
 		 switch (keyCode) {
-         case KeyEvent.VK_UP:
-             //arriba = presionado;
-             velocidad.setJ(-valor);
+         case KeyEvent.VK_UP:	//Arriba
+         case KeyEvent.VK_W:
+             velocidad.setJ(-modulo);
         	 break;
 
-         case KeyEvent.VK_DOWN:
-             //abajo = presionado;
-             velocidad.setJ(valor);
+         case KeyEvent.VK_DOWN:	//Abajo
+         case KeyEvent.VK_S:
+             velocidad.setJ(modulo);
         	 break;
 
-         case KeyEvent.VK_LEFT:
-             //izquierda = presionado;
-             velocidad.setI(-valor);
+         case KeyEvent.VK_LEFT:	//Izquierda
+         case KeyEvent.VK_A:
+             velocidad.setI(-modulo);
         	 break;
 
-         case KeyEvent.VK_RIGHT:
-             //derecha = presionado;
-             velocidad.setI(valor);
+         case KeyEvent.VK_RIGHT:	//Derecha
+         case KeyEvent.VK_D:
+             velocidad.setI(modulo);
         	 break;
 		 }
 	}
