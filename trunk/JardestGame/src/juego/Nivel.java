@@ -26,9 +26,7 @@ public class Nivel extends JPanel{
 		this.setSize(ventana);
 		construirBolas(20,4);
 		this.setColision(new Colision(bolas, cuadrado, ventana));
-		
-		
-		
+				
 	}
 	
 	public void construirBolas(int numBolas,int radio) {
@@ -60,13 +58,17 @@ public class Nivel extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(new Color(0xb4b5fe));
+		
+		
+		g.setColor(new Color(0xf7f7ff));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		fondo(g);
+		
+		
 		Iterator<Circulo> it=bolas.iterator();
 		for(int i=0; it.hasNext(); i++){
 			it.next().paint(g);
 		}
-			//g.drawString(prueba, 100, 100);
 			
 		cuadrado.paint(g);
 	}
@@ -92,6 +94,18 @@ public class Nivel extends JPanel{
 
 	public Colision getColision() {
 		return colision;
+	}
+	
+	private void fondo(Graphics g) {
+		g.setColor(new Color(0xe6e6ff));
+		int tamCuadr = 25;
+		int i, j;
+		for (i = 0; i < getHeight()/tamCuadr; i++) {
+			for (j = i%2; j < getWidth()/tamCuadr; j+=2) {
+				g.fillRect(j*25, i*25, tamCuadr, tamCuadr);
+			}
+		}
+
 	}
 	
 }
