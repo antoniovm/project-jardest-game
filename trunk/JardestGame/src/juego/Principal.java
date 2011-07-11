@@ -27,13 +27,15 @@ public class Principal {
 		bolas= new LinkedList<Circulo>();
 		frame.setResizable(false);	//TU PUTA MADRE CABRON!
 		nivel=new Nivel(cuadrado, bolas, dimensionVentana);
-		frame.getContentPane().add(nivel);
-		
+		//frame.getContentPane().add(nivel);
+		gui = new InterfazGrafica(nivel);
+		frame.getContentPane().add(gui);
 		
 		
 		
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 		computo=new Computo(cuadrado, bolas, dimensionVentana);
 		gp=new GamePlay(computo, nivel,dimensionVentana);
