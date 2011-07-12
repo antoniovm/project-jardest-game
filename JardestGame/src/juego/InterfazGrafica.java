@@ -19,7 +19,7 @@ public class InterfazGrafica extends JPanel{
 	
 	InterfazGrafica(Nivel nivel){
 		this.nivel=nivel;
-		this.setPreferredSize(new Dimension(700, 700)); //tamaño por probar
+		this.setPreferredSize(new Dimension(550, 400)); //tamaño por probar
 		this.setLayout(new GridBagLayout());
 		gridBagCoord = new GridBagConstraints();
 		
