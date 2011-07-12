@@ -10,13 +10,12 @@ import javax.swing.JComponent;
 
 public class Cuadrado extends JComponent implements KeyListener{ //jcomponent para poder pedir focus
 	private Color color;
-	private double altura, mitadAltura, x,y, vMaxima;
+	private double altura,x,y, vMaxima;
 	private Velocidad velocidad;
 	
 	Cuadrado(){
 		this.color = Color.green;
 		this.altura = 20;
-		this.mitadAltura = altura/2;
 		this.x=0;
 		this.y=200;
 		this.velocidad = new Velocidad();
@@ -58,19 +57,16 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 	}
 
 	public double getMitadAltura() {
-		return mitadAltura;
+		return altura/2;
 	}
 
-	public void setMitadAltura(int mitadAltura) {
-		this.mitadAltura = mitadAltura;
-	}
 	
 	public double getCentroX(){
-		return x+mitadAltura;
+		return x+getMitadAltura();
 	}
 	
 	public double getCentroY(){
-		return y+mitadAltura;
+		return y+getMitadAltura();
 	}
 	/**
 	 * Mueve el objeto sobre la pantalla, en funcion de su velocidad en un intervalo de tiempo
