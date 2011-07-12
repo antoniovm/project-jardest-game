@@ -20,7 +20,7 @@ public class Principal {
 	private static Dimension dimensionVentana;
 	
 	public static void main(String[] args) {
-		dimensionVentana=new Dimension(550, 400);
+		dimensionVentana=new Dimension(400, 250);
 		frame = new JFrame();
 		//gui = new InterfazGrafica();
 		cuadrado=new Cuadrado(12);

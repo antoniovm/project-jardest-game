@@ -22,11 +22,11 @@ public class Circulo {
 		velocidad = new Velocidad(i,j);
 	}
 
-	public Circulo(double x, double y, double ancho, double alto, double modulo, double angulo, double radio, Color color) {
+	public Circulo(double x, double y, double radio, double modulo, double angulo, Color color) {
 		this.x=x;
 		this.y=y;
-		this.ancho=ancho;
-		this.alto=alto;
+		this.ancho=radio*2;
+		this.alto=radio*2;
 		this.radio = radio;
 		velocidad = new Velocidad(modulo, angulo);
 		this.color=color;
