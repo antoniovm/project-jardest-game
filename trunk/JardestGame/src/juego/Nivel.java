@@ -116,8 +116,8 @@ public class Nivel extends JPanel{
 	 */
 	private void fondo(Graphics g) {
 		int i, j;
-		for (i = 0; i < geometria.getMatriz().length; i++) {
-			for (j = 0; j < geometria.getMatriz()[0].length; j++) {
+		for (i = 0; i < geometria.getAlto(); i++) {
+			for (j = 0; j < geometria.getAncho(); j++) {
 				if(seleccionarColor(i, j, g))
 					g.fillRect(j*geometria.getLosa(), i*geometria.getLosa(), geometria.getLosa(), geometria.getLosa());
 			}
@@ -141,6 +141,33 @@ public class Nivel extends JPanel{
 		default:
 			return false;
 		}
+
+	}
+	public LinkedList<Punto> getPuntos() {
+		Punto primPosValida = geometria.getPrimeraPosicionValida();
+		int sentido=0; //0 derecha, 1 arriba, 2 izquierda, 3 abajo
+		LinkedList<Punto> puntos = new LinkedList<Punto>();
+		puntos.add(new Punto(0, 0));
+		
+		for (int i = 0; i < geometria.getAlto(); i++) {
+			for (int j = 0; j < geometria.getAncho(); j++) {
+				if(cambioDireccion(sentido, i, j)) 
+					puntos.add(new Punto(i*geometria.getLosa(),j*geometria.getLosa()));
+			}
+		}
+		return null;
+	}
+	
+	private boolean cambioDireccion(int sentido, int i, int j) {
+		switch (sentido) {
+		case 0:
+			if(i>0)
+			break;
+
+		default:
+			break;
+		}
+		return false; 
 
 	}
 	

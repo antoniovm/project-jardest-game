@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.RenderingHints;
+import java.util.LinkedList;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout.Constraints;
@@ -16,6 +17,7 @@ import javax.swing.SpringLayout.Constraints;
 public class InterfazGrafica extends JPanel{
 	
 	private Nivel nivel;
+	private LinkedList<Punto> puntos;
 	private GridBagConstraints gridBagCoord;
 	
 	
@@ -29,6 +31,7 @@ public class InterfazGrafica extends JPanel{
 		gridBagCoord.gridy = 1;	
 		gridBagCoord.gridwidth = 1;
 		gridBagCoord.gridheight = 1;
+		puntos=nivel.getPuntos();
 		
 		this.add(nivel, gridBagCoord);
 	}
