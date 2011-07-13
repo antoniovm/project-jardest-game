@@ -56,7 +56,7 @@ public class Geometria {
 		
 	}
 
-	public boolean getValido(Punto punto1, Punto punto2){
+	public boolean esValido(Punto punto1, Punto punto2){
 		i = (int)punto1.getX()/sizeLosa;
 		j = (int)punto1.getY()/sizeLosa;
 		
