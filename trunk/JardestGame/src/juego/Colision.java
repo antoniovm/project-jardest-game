@@ -68,12 +68,21 @@ public class Colision extends Thread{
 			}*/
 			
 			
+			//toca por arista izquierda
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX(), aux.getY()+aux.getRadio()*2)))
+				aux.setX(geometria.getParedIzq());
 			
-			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
-				aux.setX(geometria.getPared());
-			
+			//toca por arista derecha
 			if(!geometria.esValido(new Punto(aux.getX()+aux.getRadio()*2, aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
-				aux.setX(geometria.getPared());
+				aux.setX(geometria.getParedIzq()+geometria.getLosa());
+			
+			//toca por arista superior
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY())))
+				aux.setY(geometria.getParedSup());
+			
+			//toca por arista inferior
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()+aux.getRadio()*2), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
+				aux.setY(geometria.getParedSup()+geometria.getLosa());
 			
 		}
 		
