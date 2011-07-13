@@ -18,7 +18,7 @@ public class Nivel extends JPanel{
 	private Color lilaClaro, lila, verdeClaro;
 
 	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Geometria geometria) {
-		this.ventana=new Dimension(geometria.getAncho()*geometria.getLosa(), geometria.getAncho()*geometria.getLosa());
+		this.ventana=new Dimension(geometria.getAncho()*geometria.getLosa(), geometria.getAlto()*geometria.getLosa());
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
 		this.geometria=geometria;
@@ -26,7 +26,7 @@ public class Nivel extends JPanel{
 		cuadrado.setVisible(true);
 		tamanoVentanaPorDefecto(ventana);
 		this.setSize(ventana);
-		construirBolas(10,4); 
+		construirBolas(1,4); 
 		setUI(null);
 		
 		
@@ -54,8 +54,8 @@ public class Nivel extends JPanel{
 				
 			}
 		}
-		bolas.get(0).setVelocidad(new Velocidad(250, Math.PI/4));
-		bolas.get(1).setVelocidad(new Velocidad(250, Math.PI/4));
+		//bolas.get(0).setVelocidad(new Velocidad(250, Math.PI/4));
+		//bolas.get(1).setVelocidad(new Velocidad(250, Math.PI/4));
 		
 		this.add(cuadrado);
 		
@@ -72,14 +72,9 @@ public class Nivel extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		
-		
-		//g.setColor(lilaClaro);	//Lila MUY claro XD
-		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			
 		fondo(g);
-		zonaSegura(g);
-		
-		
+
 		Iterator<Circulo> it=bolas.iterator();
 		for(int i=0; it.hasNext(); i++){
 			it.next().paint(g);
