@@ -26,7 +26,7 @@ public class Nivel extends JPanel{
 		cuadrado.setVisible(true);
 		tamanoVentanaPorDefecto(ventana);
 		this.setSize(ventana);
-		construirBolas(1,4); 
+		construirBolas(5,4); 
 		setUI(null);
 		
 		

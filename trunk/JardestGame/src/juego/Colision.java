@@ -81,7 +81,7 @@ public class Colision extends Thread{
 				aux.rebotar("i");
 				if(geometria.getParedIzq()+geometria.getLosa() != ANCHO_VENTANA)
 					geometria.setJ(geometria.getJ()-1);
-				aux.setX((geometria.getParedIzq()+geometria.getLosa())-aux.getAncho());
+				aux.setX((geometria.getParedIzq()+geometria.getLosa())-aux.getAncho()-1);
 			}
 			
 			//toca por arista superior
