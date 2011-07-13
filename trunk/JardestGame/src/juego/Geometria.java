@@ -60,17 +60,38 @@ public class Geometria {
 		i = (int)punto1.getX()/sizeLosa;
 		j = (int)punto1.getY()/sizeLosa;
 		
-		if(i >= matriz.length+1 || j >= matriz[0].length+1)
+		//si se supera el maximo tamaño de la matriz (colision pared derecha o inferior)
+		if(i > matriz.length || j > matriz[0].length){
+			i = matriz.length;
+			j = matriz[0].length;
 			return false;
+		}
 		
+		//colision pared izquierda o superior
+		if(i < 0 || j < 0){
+			i = 0;
+			j = 0;
+			return false;
+		}
+		
+		//losa no valida (la forma del nivel)
 		if(matriz[i][j] == 0)
 			return false;
 		
 		i = (int)punto2.getX()/sizeLosa;
 		j = (int)punto2.getY()/sizeLosa;
 		
-		if(i >= matriz.length+1 || j >= matriz[0].length+1)
+		if(i > matriz.length || j >= matriz[0].length){
+			i = matriz.length;
+			j = matriz[0].length;
 			return false;
+		}
+		
+		if(i < 0 || j < 0){
+			i = 0;
+			j = 0;
+			return false;
+		}
 		
 		if(matriz[i][j] == 0)
 			return false;
@@ -79,11 +100,15 @@ public class Geometria {
 	}
 	
 	public int getPared(){
-		return i*sizeLosa;
+		return i*sizeLosa; //devuelve arista izquierda de la losa
 	}
 	
 	public char[][] getMatriz(){
 		return matriz;
+	}
+	
+	public char getElemento(int i, int j){
+		return matriz[i][j];
 	}
 	
 	public int getLosa(){
