@@ -69,20 +69,36 @@ public class Colision extends Thread{
 			
 			
 			//toca por arista izquierda
-			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX(), aux.getY()+aux.getRadio()*2)))
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX(), aux.getY()+aux.getRadio()*2))){
+				aux.rebotar("i");
+				if(geometria.getParedIzq() != 0)
+					geometria.setJ(geometria.getJ()+1);
 				aux.setX(geometria.getParedIzq());
+			}
 			
 			//toca por arista derecha
-			if(!geometria.esValido(new Punto(aux.getX()+aux.getRadio()*2, aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
-				aux.setX(geometria.getParedIzq()+geometria.getLosa());
+			if(!geometria.esValido(new Punto(aux.getX()+aux.getRadio()*2, aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2))){
+				aux.rebotar("i");
+				if(geometria.getParedIzq()+geometria.getLosa() != ANCHO_VENTANA)
+					geometria.setJ(geometria.getJ()-1);
+				aux.setX((geometria.getParedIzq()+geometria.getLosa())-aux.getAncho());
+			}
 			
 			//toca por arista superior
-			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY())))
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()))){
+				aux.rebotar("j");
+				if(geometria.getParedSup() != 0)
+					geometria.setI(geometria.getI()+1);
 				aux.setY(geometria.getParedSup());
+			}
 			
 			//toca por arista inferior
-			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()+aux.getRadio()*2), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()+aux.getRadio()*2), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2))){
+				aux.rebotar("j");
+				if(geometria.getParedSup()+geometria.getLosa() != ALTO_VENTANA)
+					geometria.setI(geometria.getI()-1);
 				aux.setY(geometria.getParedSup()+geometria.getLosa());
+			}
 			
 		}
 		

@@ -65,17 +65,27 @@ public class Geometria {
 		i = (int)punto1.getY()/sizeLosa; //filas
 		j = (int)punto1.getX()/sizeLosa; //columnas
 		
-		//si se supera el maximo tamaño de la matriz (colision pared derecha o inferior)
-		if(i > matriz.length || j > matriz[0].length){
-			i = matriz.length;
-			j = matriz[0].length;
+		//colision pared inferior
+		if(i >= matriz.length){
+			i = matriz.length-1;
 			return false;
 		}
 		
-		//colision pared izquierda o superior
-		if(i < 0 || j < 0){
+		//colision pared derecha
+		if(j >= matriz[0].length){
+			j = matriz[0].length-1;
+			return false;
+		}
+		
+		//colision pared superior
+		if(i < 0){
 			i = 0;
-			j = 0;
+			return false;
+		}
+		
+		//colision pared izquierda
+		if(j < 0){
+			j=0;
 			return false;
 		}
 		
@@ -86,15 +96,23 @@ public class Geometria {
 		i = (int)punto2.getY()/sizeLosa;
 		j = (int)punto2.getX()/sizeLosa;
 		
-		if(i > matriz.length || j >= matriz[0].length){
-			i = matriz.length;
-			j = matriz[0].length;
+		if(i >= matriz.length){
+			i = matriz.length-1;
 			return false;
 		}
 		
-		if(i < 0 || j < 0){
+		if(j >= matriz[0].length){
+			j = matriz[0].length-1;
+			return false;
+		}
+		
+		if(i < 0){
 			i = 0;
-			j = 0;
+			return false;
+		}
+		
+		if(j < 0){
+			j=0;
 			return false;
 		}
 		
@@ -105,11 +123,11 @@ public class Geometria {
 	}
 	
 	public int getParedIzq(){
-		return i*sizeLosa; //devuelve arista izquierda de la losa
+		return j*sizeLosa; //devuelve arista izquierda de la losa
 	}
 	
 	public int getParedSup(){
-		return j*sizeLosa; //devuelve arista izquierda de la losa
+		return i*sizeLosa; //devuelve arista izquierda de la losa
 	}
 	
 	public byte [][] getMatriz(){
@@ -130,6 +148,22 @@ public class Geometria {
 	
 	public int getLosa(){
 		return sizeLosa;
+	}
+	
+	public int getI(){
+		return i;
+	}
+	
+	public int getJ(){
+		return j;
+	}
+	
+	public void setI(int i){
+		this.i=i;
+	}
+	
+	public void setJ(int j){
+		this.j = j;
 	}
 	
 	@Override
