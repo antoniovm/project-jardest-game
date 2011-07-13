@@ -3,12 +3,12 @@ package juego;
 import java.awt.Dimension;
 
 public class Geometria {
-	private char[][] matriz;
+	private byte[][] matriz;
 	private int sizeLosa, i, j;
 	
 	Geometria(Dimension sizePanel, int sizeLosa){
 		this.sizeLosa = sizeLosa;
-		this.matriz = new char[sizePanel.height/sizeLosa][sizePanel.width/sizeLosa];
+		this.matriz = new byte[sizePanel.height/sizeLosa][sizePanel.width/sizeLosa];
 		
 		crearNivel();
 	}
@@ -107,7 +107,7 @@ public class Geometria {
 		return j*sizeLosa; //devuelve arista izquierda de la losa
 	}
 	
-	public char[][] getMatriz(){
+	public byte [][] getMatriz(){
 		return matriz;
 	}
 	
@@ -119,12 +119,17 @@ public class Geometria {
 		return matriz.length;
 	}
 	
-	public char getElemento(int i, int j){
+	public byte getElemento(int i, int j){
 		return matriz[i][j];
 	}
 	
 	public int getLosa(){
 		return sizeLosa;
+	}
+	
+	@Override
+	public String toString() {
+		return matriz.toString();
 	}
 
 }
