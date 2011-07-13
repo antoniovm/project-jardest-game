@@ -3,14 +3,19 @@ package juego;
 import java.awt.Dimension;
 
 public class Geometria {
-	private byte[][] matriz;
+	private byte[][] matriz = {{2,2,2,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3},
+							   {2,2,2,0,1,1,1,1,1,1,1,1,1,1,0,3,3,3},
+							   {2,2,2,0,1,1,1,1,1,1,1,1,1,1,0,3,3,3},
+							   {2,2,2,0,1,1,1,1,1,1,1,1,1,1,0,3,3,3},
+							   {2,2,2,0,1,1,1,1,1,1,1,1,1,1,0,3,3,3},
+							   {2,2,2,1,1,0,0,0,0,0,0,0,0,0,0,3,3,3}};
 	private int sizeLosa, i, j;
 	
 	Geometria(Dimension sizePanel, int sizeLosa){
 		this.sizeLosa = sizeLosa;
-		this.matriz = new byte[sizePanel.height/sizeLosa][sizePanel.width/sizeLosa];
+		//this.matriz = new byte[sizePanel.height/sizeLosa][sizePanel.width/sizeLosa];
 		
-		crearNivel();
+		//crearNivel();
 	}
 	
 	private void crearNivel() {
