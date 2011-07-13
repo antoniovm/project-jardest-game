@@ -10,6 +10,7 @@ public class Colision extends Thread{
 	private Cuadrado cuadrado;
 	private double limite;
 	private int ANCHO_VENTANA, ALTO_VENTANA;
+	private Geometria geometria;
 	
 	public Colision(LinkedList<Circulo> bolas, Cuadrado cuadrado, Dimension ventana) {
 		this.bolas=bolas;
@@ -17,6 +18,7 @@ public class Colision extends Thread{
 		this.limite = (cuadrado.getMitadAltura() + bolas.get(0).getRadio());
 		this.ANCHO_VENTANA = (int) ventana.getWidth();
 		this.ALTO_VENTANA = (int) ventana.getHeight();
+		this.geometria = new Geometria(ventana, 25); //size panel, tamaño losa
 
 	}
 	
