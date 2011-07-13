@@ -17,7 +17,7 @@ public class Cuadrado extends JComponent implements KeyListener{ //jcomponent pa
 		this.color = Color.green;
 		this.altura = 20;
 		this.x=0;
-		this.y=200;
+		this.y=100;
 		this.velocidad = new Velocidad();
 		this.vMaxima=200;
 		setFocusable(true);
