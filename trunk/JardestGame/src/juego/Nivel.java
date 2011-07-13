@@ -23,7 +23,7 @@ public class Nivel extends JPanel{
 		cuadrado.setVisible(true);
 		tamanoVentanaPorDefecto(ventana);
 		this.setSize(ventana);
-		construirBolas(20,4);
+		construirBolas(10,4); //20, 4
 				
 	}
 	/**
@@ -35,12 +35,12 @@ public class Nivel extends JPanel{
 		for(int i=0; i<numBolas; i++){
 			if(i%2==0){
 				//las pares empiezan arriba
-				bolas.add( new Circulo(i*(radio+20), 0,radio, 250, Math.PI/2,  Color.blue));
-				
+				//bolas.add( new Circulo(i*(radio+20), 0,radio, 250, Math.PI,  Color.blue));
+				bolas.add( new Circulo(300, i*(radio+20),radio, 250, 0,  Color.blue));
 			}
 			else{
 				//las impares empiezan abajo (no cuadra el this.getHeight(), tengo que sumarle 460 cuando no deberia hacer falta)
-				bolas.add( new Circulo(i*(radio+20), this.getHeight()-radio*2, radio, 250 ,-Math.PI/2, Color.red));
+				//bolas.add( new Circulo(i*(radio+20), this.getHeight()-radio*2, radio, 250 ,-Math.PI/2, Color.red));
 				
 			}
 		}

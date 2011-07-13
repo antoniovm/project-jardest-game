@@ -47,6 +47,8 @@ public class Colision extends Thread{
 		
 			
 			
+			//LIMITES DEL PANEL SE CORRESPONDEN CON ALGUNA ZONA DEL NIVEL
+			//INCLUIR LUEGO EN EL GETVALIDO O GETPARED
 			//  Pared Izq		
 			if(aux.getX()<0){
 				aux.rebotar("i");
@@ -67,6 +69,9 @@ public class Colision extends Thread{
 				aux.rebotar("j");
 				aux.setY(ALTO_VENTANA-aux.getRadio()*2);
 			}
+			
+			if(!geometria.esValido(new Punto(aux.getX(), aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2)))
+				aux.setX(geometria.getPared());
 			
 		}
 		
