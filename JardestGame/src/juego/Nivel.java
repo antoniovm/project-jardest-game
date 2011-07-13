@@ -11,19 +11,28 @@ import javax.swing.JPanel;
 
 
 public class Nivel extends JPanel{
-
+	private Geometria geometria;
 	private Dimension ventana;
 	private Cuadrado cuadrado;
 	private LinkedList<Circulo> bolas;
+	private Color lilaClaro, lila, verdeClaro;
 
-	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana) {	
+	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana, Geometria geometria) {	
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
+		this.geometria=geometria;
 		this.setVentana(ventana);
 		cuadrado.setVisible(true);
 		tamanoVentanaPorDefecto(ventana);
 		this.setSize(ventana);
-		construirBolas(10,4); //20, 4
+		construirBolas(10,4); 
+		setUI(null);
+		
+		
+		//COLORES
+		lila=new Color(0xe6e6ff);
+		lilaClaro=new Color(0xf7f7ff);
+		verdeClaro=new Color(0xb5feb4);
 				
 	}
 	/**
@@ -64,8 +73,8 @@ public class Nivel extends JPanel{
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		
-		g.setColor(new Color(0xf7f7ff));	//Lila MUY claro XD
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		//g.setColor(lilaClaro);	//Lila MUY claro XD
+		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		fondo(g);
 		zonaSegura(g);
 		
@@ -101,7 +110,7 @@ public class Nivel extends JPanel{
 	 * @param g
 	 */
 	private void zonaSegura(Graphics g) {
-		g.setColor(new Color(0xb5feb4)); 	//Verde claro
+		g.setColor(verdeClaro); 	
 		g.fillRect(0, getHeight()/2-50, 50, 100);
 
 	}
@@ -110,13 +119,31 @@ public class Nivel extends JPanel{
 	 * @param g
 	 */
 	private void fondo(Graphics g) {
-		g.setColor(new Color(0xe6e6ff));	//Lila claro
-		int tamCuadr = 25;
 		int i, j;
-		for (i = 0; i < getHeight()/tamCuadr; i++) {
-			for (j = i%2; j < getWidth()/tamCuadr; j+=2) {
-				g.fillRect(j*tamCuadr, i*tamCuadr, tamCuadr, tamCuadr);
+		for (i = 0; i < geometria.getMatriz().length; i++) {
+			for (j = i%2; j < geometria.getMatriz()[0].length; j+=2) {
+				seleccionarColor(i, j, g);
+				g.fillRect(j*geometria.getLosa(), i*geometria.getLosa(), geometria.getLosa(), geometria.getLosa());
 			}
+		}
+
+	}
+	
+	private boolean seleccionarColor(int i, int j,Graphics g) {
+		switch (geometria.getElemento(i,j)) {
+		case '0': return false;
+		case '1': 
+			if(i%2==j%2) g.setColor(lila);
+			else		g.setColor(lilaClaro);
+			return true;
+		case '2':
+		case '3':
+			g.setColor(verdeClaro);
+			return false;
+			
+
+		default:
+			return false;
 		}
 
 	}

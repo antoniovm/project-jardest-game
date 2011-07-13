@@ -1,12 +1,9 @@
 package juego;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 public class Principal {
@@ -26,7 +23,7 @@ public class Principal {
 		cuadrado=new Cuadrado(12);
 		bolas= new LinkedList<Circulo>();
 		frame.setResizable(false);	//TU PUTA MADRE CABRON!
-		nivel=new Nivel(cuadrado, bolas, dimensionVentana);
+		nivel=new Nivel(cuadrado, bolas, dimensionVentana, new Geometria(dimensionVentana, 25));
 		//frame.getContentPane().add(nivel);
 		gui = new InterfazGrafica(nivel);
 		frame.getContentPane().add(gui);
