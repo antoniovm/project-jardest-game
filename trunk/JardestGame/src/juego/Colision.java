@@ -79,9 +79,9 @@ public class Colision extends Thread{
 			//toca por arista derecha
 			if(!geometria.esValido(new Punto(aux.getX()+aux.getRadio()*2, aux.getY()), new Punto(aux.getX()+aux.getRadio()*2, aux.getY()+aux.getRadio()*2))){
 				aux.rebotar("i");
-				if(geometria.getParedIzq()+geometria.getLosa() != ANCHO_VENTANA)
-					geometria.setJ(geometria.getJ()-1);
-				aux.setX((geometria.getParedIzq()+geometria.getLosa())-aux.getAncho()-1);
+				if(geometria.getParedIzq()+geometria.getLosa() != ANCHO_VENTANA) //no es valido y ademas no nos hemos salido del panel
+					geometria.setJ(geometria.getJ()-1); //como no se actualiza la J en valido, se hace aqui
+				aux.setX((geometria.getParedIzq()+geometria.getLosa())-aux.getAncho()-1); //-1 porque sino lo considera de la losa siguiente
 			}
 			
 			//toca por arista superior
@@ -106,8 +106,15 @@ public class Colision extends Thread{
 		// Cuadrado
 		
 		//  Pared Izq		
-		if(cuadrado.X()<0)
-			cuadrado.setX(0);
+		/*if(cuadrado.X()<0)
+			cuadrado.setX(0);*/
+		
+		if(!geometria.esValido(new Punto(cuadrado.X(), cuadrado.Y()), new Punto(cuadrado.X(), cuadrado.Y()+cuadrado.getAltura()))){
+			if(geometria.getParedIzq() != 0)
+				geometria.setJ(geometria.getJ()+1);
+			cuadrado.setX(geometria.getParedIzq());
+		}
+		
 		//  Pared Derecha
 		if((cuadrado.X()+cuadrado.getAltura())>ANCHO_VENTANA)
 			cuadrado.setX(ANCHO_VENTANA-cuadrado.getAltura());
