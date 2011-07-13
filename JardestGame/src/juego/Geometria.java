@@ -107,6 +107,14 @@ public class Geometria {
 		return matriz;
 	}
 	
+	public int getAncho(){
+		return matriz[0].length;
+	}
+	
+	public int getAlto(){
+		return matriz.length;
+	}
+	
 	public char getElemento(int i, int j){
 		return matriz[i][j];
 	}
