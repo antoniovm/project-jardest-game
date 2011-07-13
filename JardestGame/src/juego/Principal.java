@@ -23,11 +23,10 @@ public class Principal {
 		cuadrado=new Cuadrado(12);
 		bolas= new LinkedList<Circulo>();
 		frame.setResizable(false);	//TU PUTA MADRE CABRON!
-		nivel=new Nivel(cuadrado, bolas, new Geometria(dimensionVentana, 25));
+		nivel=new Nivel(cuadrado, bolas, new Geometria(new Dimension(18*25, 6*25), 25));
 		//frame.getContentPane().add(nivel);
 		gui = new InterfazGrafica(nivel);
 		frame.getContentPane().add(gui);
-		
 		
 		
 		frame.pack();
