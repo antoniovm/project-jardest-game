@@ -17,7 +17,8 @@ public class Nivel extends JPanel{
 	private LinkedList<Circulo> bolas;
 	private Color lilaClaro, lila, verdeClaro;
 
-	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Dimension ventana, Geometria geometria) {	
+	public Nivel(Cuadrado cuadrado, LinkedList<Circulo> bolas, Geometria geometria) {
+		this.ventana=new Dimension(geometria.getAncho()*geometria.getLosa(), geometria.getAncho()*geometria.getLosa());
 		this.cuadrado=cuadrado;
 		this.bolas=bolas;
 		this.geometria=geometria;
@@ -121,9 +122,9 @@ public class Nivel extends JPanel{
 	private void fondo(Graphics g) {
 		int i, j;
 		for (i = 0; i < geometria.getMatriz().length; i++) {
-			for (j = i%2; j < geometria.getMatriz()[0].length; j+=2) {
-				seleccionarColor(i, j, g);
-				g.fillRect(j*geometria.getLosa(), i*geometria.getLosa(), geometria.getLosa(), geometria.getLosa());
+			for (j = 0; j < geometria.getMatriz()[0].length; j++) {
+				if(seleccionarColor(i, j, g))
+					g.fillRect(j*geometria.getLosa(), i*geometria.getLosa(), geometria.getLosa(), geometria.getLosa());
 			}
 		}
 
@@ -131,15 +132,15 @@ public class Nivel extends JPanel{
 	
 	private boolean seleccionarColor(int i, int j,Graphics g) {
 		switch (geometria.getElemento(i,j)) {
-		case '0': return false;
-		case '1': 
+		case 0: return false;
+		case 1: 
 			if(i%2==j%2) g.setColor(lila);
 			else		g.setColor(lilaClaro);
 			return true;
-		case '2':
-		case '3':
+		case 2:
+		case 3:
 			g.setColor(verdeClaro);
-			return false;
+			return true;
 			
 
 		default:
