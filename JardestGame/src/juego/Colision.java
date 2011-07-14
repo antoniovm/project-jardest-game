@@ -46,26 +46,8 @@ public class Colision extends Thread{
 			}
 		
 			
-			/*//  Pared Izq		
-			if(aux.getX()<0){
-				aux.rebotar("i");
-				aux.setX(0);
-			}
-			//  Pared Derecha
-			if((aux.getX()+aux.getRadio()*2)>ANCHO_VENTANA){
-				aux.rebotar("i");
-				aux.setX(ANCHO_VENTANA-aux.getRadio()*2);
-			}
-			// Pared Sup
-			if(aux.getY()<0){
-				aux.rebotar("j");
-				aux.setY(0);
-			}
-			// Pared Inf
-			if((aux.getY()+aux.getRadio()*2)>ALTO_VENTANA){
-				aux.rebotar("j");
-				aux.setY(ALTO_VENTANA-aux.getRadio()*2);
-			}*/
+			
+			
 			
 			
 			//toca por arista izquierda
@@ -105,25 +87,33 @@ public class Colision extends Thread{
 
 		// Cuadrado
 		
-		//  Pared Izq		
-		/*if(cuadrado.X()<0)
-			cuadrado.setX(0);*/
+		//  Pared Izq
 		
+		//	HAY UN PROBLEMA: SI TE SALES POR ARRIBA, ENTRA EN ESTE IF, CUANDO NO DEBERIA, HAY QUE COMPROBAR LA ARISTA DE OTRA FORMA
 		if(!geometria.esValido(new Punto(cuadrado.X(), cuadrado.Y()), new Punto(cuadrado.X(), cuadrado.Y()+cuadrado.getAltura()))){
-			if(geometria.getParedIzq() != 0)
+			if(geometria.getParedIzq() > 0)		
 				geometria.setJ(geometria.getJ()+1);
 			cuadrado.setX(geometria.getParedIzq());
 		}
 		
 		//  Pared Derecha
-		if((cuadrado.X()+cuadrado.getAltura())>ANCHO_VENTANA)
-			cuadrado.setX(ANCHO_VENTANA-cuadrado.getAltura());
+		if(!geometria.esValido(new Punto(cuadrado.X()+cuadrado.getAltura(), cuadrado.Y()), new Punto(cuadrado.X()+cuadrado.getAltura(), cuadrado.Y()+cuadrado.getAltura()))){
+			if(geometria.getParedDer() < geometria.getAncho()*geometria.getLosa())
+				geometria.setJ(geometria.getJ()-1);
+			cuadrado.setX(geometria.getParedDer()-cuadrado.getAltura());
+		}
 		// Pared Sup
-		if(cuadrado.Y()<0)
-			cuadrado.setY(0);
+		if(!geometria.esValido(new Punto(cuadrado.X(), cuadrado.Y()), new Punto(cuadrado.X()+cuadrado.getAltura(), cuadrado.Y()))){
+			if(geometria.getParedSup() > 0)
+				geometria.setI(geometria.getI()+1);
+			cuadrado.setY(geometria.getParedSup());
+		}
 		// Pared Inf
-		if((cuadrado.Y()+cuadrado.getAltura())>ALTO_VENTANA) //17 depende del tamaño del cuadrado
-			cuadrado.setY(ALTO_VENTANA-cuadrado.getAltura());
+		if(!geometria.esValido(new Punto(cuadrado.X(), cuadrado.Y()+cuadrado.getAltura()), new Punto(cuadrado.X()+cuadrado.getAltura(), cuadrado.Y()+cuadrado.getAltura()))){
+			if(geometria.getParedDer() < geometria.getAlto()*geometria.getLosa())
+				geometria.setI(geometria.getI()-1);
+			cuadrado.setY(geometria.getParedInf()-cuadrado.getAltura());
+		}
 
 	}
 	

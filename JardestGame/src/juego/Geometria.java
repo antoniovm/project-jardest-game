@@ -66,25 +66,25 @@ public class Geometria {
 		j = (int)punto1.getX()/sizeLosa; //columnas
 		
 		//colision pared inferior
-		if(i >= matriz.length){
+		if(i > matriz.length){
 			i = matriz.length-1;
 			return false;
 		}
 		
 		//colision pared derecha
-		if(j >= matriz[0].length){
+		if(j > matriz[0].length){
 			j = matriz[0].length-1;
 			return false;
 		}
 		
 		//colision pared superior
-		if(i < 0){
+		if(punto1.getY()/sizeLosa < 0){
 			i = 0;
 			return false;
 		}
 		
 		//colision pared izquierda
-		if(j < 0){
+		if(punto1.getX()/sizeLosa < 0){
 			j=0;
 			return false;
 		}
@@ -126,8 +126,16 @@ public class Geometria {
 		return j*sizeLosa; //devuelve arista izquierda de la losa
 	}
 	
+	public int getParedDer(){
+		return (j+1)*sizeLosa; //devuelve arista izquierda de la losa
+	}
+	
 	public int getParedSup(){
-		return i*sizeLosa; //devuelve arista izquierda de la losa
+		return i*sizeLosa; //devuelve arista superior de la losa
+	}
+	
+	public int getParedInf(){
+		return (i+1)*sizeLosa; //devuelve arista inferior de la losa
 	}
 	
 	public byte [][] getMatriz(){
