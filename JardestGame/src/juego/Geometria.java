@@ -62,61 +62,62 @@ public class Geometria {
 	}
 
 	public boolean esValido(Punto punto1, Punto punto2){
-		i = (int)punto1.getY()/sizeLosa; //filas
-		j = (int)punto1.getX()/sizeLosa; //columnas
+		int i1 = (int)punto1.getY()/sizeLosa; //filas
+		int j1 = (int)punto1.getX()/sizeLosa; //columnas
+		
+		int i2 = (int)punto2.getY()/sizeLosa; //filas
+		int j2 = (int)punto2.getX()/sizeLosa; //columnas
 		
 		//colision pared inferior
-		if(i > matriz.length){
+		if(i1 > matriz.length-1){
 			i = matriz.length-1;
 			return false;
 		}
 		
 		//colision pared derecha
-		if(j > matriz[0].length){
-			j = matriz[0].length-1;
+		if(j1 > matriz[0].length-1){
+			j1 = matriz[0].length-1;
 			return false;
 		}
 		
 		//colision pared superior
-		if(punto1.getY()/sizeLosa < 0){
+		if(i1 < 0){
 			i = 0;
 			return false;
 		}
 		
 		//colision pared izquierda
-		if(punto1.getX()/sizeLosa < 0){
+		if(j1 < 0){
 			j=0;
 			return false;
 		}
 		
 		//losa no valida (la forma del nivel)
-		if(matriz[i][j] == 0)
+		if(matriz[i1][j1] == 0)
 			return false;
 		
-		i = (int)punto2.getY()/sizeLosa;
-		j = (int)punto2.getX()/sizeLosa;
-		
-		if(i >= matriz.length){
+		//PUNTO 2
+		if(i2 > matriz.length-1){
 			i = matriz.length-1;
 			return false;
 		}
 		
-		if(j >= matriz[0].length){
+		if(j2 > matriz[0].length-1){
 			j = matriz[0].length-1;
 			return false;
 		}
 		
-		if(i < 0){
+		if(i2 < 0){
 			i = 0;
 			return false;
 		}
 		
-		if(j < 0){
+		if(j2 < 0){
 			j=0;
 			return false;
 		}
 		
-		if(matriz[i][j] == 0)
+		if(matriz[i2][j2] == 0)
 			return false;
 		
 		return true;
